@@ -429,6 +429,15 @@ app.post("/pause", (req, res) => {
     });
 });
 
+app.post("/tick", (req, res) => {
+    if (!bot) {
+        res.status(400).json({error: "Bot not spawned"});
+        return;
+    }
+    tick = bot.time.age;
+    res.json({message: tick});
+});
+
 // Server listening to PORT
 const PORT = process.argv[2];
 const VISUAL_SERVER_PORT = process.argv[3];
